@@ -93,7 +93,5 @@ npm start
 
 ## 💡 Melhorias futuras
 
--   Paginação\
 -   Invalidação de cache\
 -   Uso de Redis\
--   Métricas de performance
