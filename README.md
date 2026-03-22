@@ -1,5 +1,99 @@
-# Projeto para entendimento de cache em APIs
+# 📦 Projeto: Entendimento de Cache em APIs
 
-Durante o desenvolvimento do projeto, consegui compreender algo que me foi importante, aplicar cache na aplicação nem sempre será sobre reduzir a velocidade de busca, mas sim, evitar do banco ter muitas requisições.
-Tentei aplicar cache sem paginação, trazendo aproximados 110k de dados por vez, a minha consulta de 40s foi para 22s aplicando cache. Em minha cabeça deveria voltar os dados instantaneamente, mas na verdade o cache resolve um problema de requisições de querys no meu banco.
-De 1000 requisições que seriam feitas no meu banco eu teria 1000 queries no banco com 110k de dados e aplicando o cache eu consegui fazer 1000 requisições que na verdade foi apenas 1 requisição no meu banco e 999 respostas de cache. Assim diminuindo o fluxo do banco Mongo nesse caso.
+Este projeto foi desenvolvido com o objetivo de entender, na prática, o
+impacto do uso de cache em APIs --- especialmente em cenários com grande
+volume de dados.
+
+## 🧠 Aprendizados
+
+Durante o desenvolvimento, ficou claro que o uso de cache **não é apenas
+sobre reduzir o tempo de resposta**, mas principalmente sobre:
+
+-   Reduzir a carga no banco de dados\
+-   Evitar múltiplas queries desnecessárias\
+-   Melhorar a escalabilidade da aplicação
+
+### 🔍 Experimento realizado
+
+-   Consulta sem paginação retornando \~110k registros
+-   Tempo sem cache: **\~40 segundos**
+-   Tempo com cache: **\~22 segundos**
+
+Inicialmente, a expectativa era que o cache tornasse a resposta
+praticamente instantânea.\
+No entanto, o principal ganho observado foi outro:
+
+> O cache reduziu drasticamente a quantidade de queries feitas no banco.
+
+### 📊 Cenário comparativo
+
+  Situação    Requisições API   Queries no banco
+  ----------- ----------------- ------------------
+  Sem cache   1000              1000
+  Com cache   1000              1
+
+Ou seja:
+
+-   1 requisição ao banco\
+-   999 respostas vindas do cache
+
+Isso reduz significativamente a sobrecarga no MongoDB e melhora a
+eficiência do sistema.
+
+------------------------------------------------------------------------
+
+## ⚙️ Pré-requisitos
+
+-   MongoDB instalado (ex: MongoDB Compass)
+
+------------------------------------------------------------------------
+
+## 🗄️ Configuração do Banco
+
+``` env
+MONGO_URL_STRING=mongodb://localhost:27017/
+MONGO_DB_NAME=CACHE
+```
+
+Criar collection:
+
+    Products
+
+------------------------------------------------------------------------
+
+## 📁 Importação de Dados
+
+Arquivo disponível no repositório:
+
+    products_100k.json
+
+Importe para a collection `Products`.
+
+------------------------------------------------------------------------
+
+## 🚀 Como executar
+
+``` env
+PORT=3000
+```
+
+### Instalar dependências
+
+``` bash
+npm install
+```
+
+### Iniciar API
+
+``` bash
+npm start
+```
+
+------------------------------------------------------------------------
+
+## 💡 Melhorias futuras
+
+-   Paginação
+-   Invalidação de cache
+-   Uso de Redis
+-   Métricas de performance
