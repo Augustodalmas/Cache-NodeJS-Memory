@@ -44,14 +44,23 @@ eficiência do sistema.
 
 ## ⚙️ Pré-requisitos
 
--   MongoDB instalado (ex: MongoDB Compass)
+-   Docker instalado
+
+------------------------------------------------------------------------
+
+# 🐋 Docker-compose
+
+Para iniciar o ambiente no docker, rodamos o comando:
+```
+docker-compose up
+```
 
 ------------------------------------------------------------------------
 
 ## 🗄️ Configuração do Banco
 
 ``` env
-MONGO_URL_STRING=mongodb://localhost:27017/
+MONGO_URL_STRING=mongodb://localhost:27030/
 MONGO_DB_NAME=CACHE
 ```
 
