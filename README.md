@@ -13,10 +13,10 @@ sobre reduzir o tempo de resposta**, mas principalmente sobre:
 -   Evitar múltiplas queries desnecessárias\
 -   Melhorar a escalabilidade da aplicação
 
-### 🔍 Experimento realizado
+## 🔍 Experimento realizado
 
--   Consulta sem paginação retornando \~110k registros
--   Tempo sem cache: **\~40 segundos**
+-   Consulta sem paginação retornando \~110k registros\
+-   Tempo sem cache: **\~40 segundos**\
 -   Tempo com cache: **\~22 segundos**
 
 Inicialmente, a expectativa era que o cache tornasse a resposta
@@ -25,12 +25,12 @@ No entanto, o principal ganho observado foi outro:
 
 > O cache reduziu drasticamente a quantidade de queries feitas no banco.
 
-### 📊 Cenário comparativo
+## 📊 Cenário comparativo
 
-  Situação    Requisições API   Queries no banco
-  ----------- ----------------- ------------------
-  Sem cache   1000              1000
-  Com cache   1000              1
+| Situação  | Requisições API | Queries no banco |
+| --------- | --------------- | ---------------- |
+| Sem cache | 1000            | 1000             |
+| Com cache | 1000            | 1                |
 
 Ou seja:
 
@@ -93,7 +93,7 @@ npm start
 
 ## 💡 Melhorias futuras
 
--   Paginação
--   Invalidação de cache
--   Uso de Redis
+-   Paginação\
+-   Invalidação de cache\
+-   Uso de Redis\
 -   Métricas de performance
